@@ -8,8 +8,15 @@ $(document).ready(function (){
     var time = $(this).attr('id').split('hour-')[1];
 
   // setting time for colors 
-
-
+    if (time < currentHour) {
+      $(this).addClass('past')
+    } else if (time == currentHour) {
+      $(this).addClass('present')
+    } else {
+      $(this).addClass('future')
+    }
+  })
+  
   // saving to local storage
     $('.saveBtn').on('click', function(){
       var time = $(this).parent().attr('id')
@@ -27,10 +34,6 @@ $(document).ready(function (){
     $('#hour-15 .description').val(localStorage.getItem('hour-15'))
     $('#hour-16 .description').val(localStorage.getItem('hour-16'))
     $('#hour-17 .description').val(localStorage.getItem('hour-17'))
-    $('#hour-18 .description').val(localStorage.getItem('hour-18'))
-    $('#hour-19 .description').val(localStorage.getItem('hour-19'))
-    $('#hour-20 .description').val(localStorage.getItem('hour-20'))
-    $('#hour-21 .description').val(localStorage.getItem('hour-21'))
 
   // displaying current date in header
     $('#currentDay').text(dayjs().format('dddd, MMMM D'))
